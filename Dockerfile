@@ -29,7 +29,8 @@ RUN apt-get update && \
       git \
       libcurl4-openssl-dev \
       zlib1g-dev \
-      libfreetype6-dev
+      libfreetype6-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
@@ -48,6 +49,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       libfreetype6-dev \
       libcurl4-openssl-dev && \
+    rm -rf /var/lib/apt/lists/* && \
     useradd --create-home --home-dir /home/guest \
       --uid 1000 --gid 100 --shell /bin/bash guest
 
